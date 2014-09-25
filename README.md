@@ -12,9 +12,9 @@ From ServiceMix to Fabric8
 
 ### Uruchomienie dostarczonego obrazu Linux Mint 17 ###
 
-Obraz zwiera:
+Obraz zawiera:
  
- * Zainstalowana Java 1.7.0_67 oraz Apache Maven 3.2.1
+ * Zainstalowana Java 1.7.0_67, Apache Maven 3.2.1, Git 1.9.1
  * Zainstalowany SaopUI 5.0.0 oraz IntelliJ Idea 13.1.4
  * Rozpakowaną w folderze ~/Programs dysrybucję ServiceMix 5.1.2 oraz Fabric8 1.2.0.Beta4.
 
