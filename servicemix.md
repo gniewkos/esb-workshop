@@ -131,7 +131,7 @@ Sprawdza się metoda pracy z konsolą linux, działa TAB:)
 `help` wyświetla listę wszystkich dostępnych poleceń.
 Większość z nich udostępnia pomoc `--help`.
 
-Polecenia wystarcząjące do przejścia warsztatu to (także w 90% standardowego użytkowania):
+Polecenia wystarczające do przejścia warsztatu to (także w 90% standardowego użytkowania):
 
 * podpowiedzi `tab`
 * wyszukiwanie w historii poleceń `ctrl+r`
