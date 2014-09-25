@@ -43,7 +43,7 @@ Usuwamy kontener z przykładem.
 
     Fabric8 -> Runtime -> instance01 -> Stop -> Delete
 
-## Krok 3 - Dubugowanie ##
+## Krok 3 - Debugowanie ##
 
 Ciekawą funkcjonalnością jest debugowanie trasy integracyjnej. Przetestujemy to na ciekawszym przykładzie angażującym brokera ActiveMQ i wzorzec Content Base Router (CBR).
 
