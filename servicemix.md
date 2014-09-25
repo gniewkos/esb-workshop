@@ -63,3 +63,54 @@ Podstawowe elementy służące do składania:
 
 
     $ read-with-understanding ~/Workspace/report-service/../blueprint.xml
+
+## Krok 3 - Prosta usługa proxy ##
+
+Spróbujmy zmodyfikować usługę (zmieniając blueprint.xml) tak aby otrzymać prostą usługę proxy. 
+
+Usługa proxy niech będzie udostępniona na ServiceMix pod adresem:
+
+    http://localhost:**8888**/report-service/
+
+Reprezentowanym na trasie jako następujący endpoint:
+
+    <cxf:cxfEndpoint id="reportEsbEndpoint"
+                     address="http://localhost:8888/report-service/"
+                     wsdlURL="wsdl/report_incident.wsdl">
+    </cxf:cxfEndpoint>
+
+
+Ponieważ, nie bedziemy potrzebować zamiany rządania na obiekty Javy nie używamy już atrybuut serviceClass. Endpoint cxf obsługuje formaty: 
+    
+* POJO (domoślny)
+* PAYLOAD(treścią komunikatu jest soap.body)
+* RAW(treścią komunikatu jest pełny soap, nie mam możliwości parsowania treści)
+
+W wygnerowanej usłudze używany był domyślny tryb POJO, trzeba go zmienić na PAYLOAD. URI komponentu CXF będzie następujące: 
+
+
+    uri="cxf:bean:reportEsbEndpoint?dataFormat=PAYLOAD"
+
+
+Rządanie klienta poiwnno zostać przekazane do usługi docelowej na adresie:
+
+    http://localhost:8088//mock-report-service
+    
+Reprezentowanym na trasie jako endpoint:
+
+    <cxf:cxfEndpoint id="reportEndpoint"
+                     address="http://localhost:8088/mock-report-service/"
+                     wsdlURL="wsdl/report_incident.wsdl">
+    </cxf:cxfEndpoint>
+    
+z uri:
+
+    uri="cxf:bean:reportEndpoint?dataFormat=PAYLOAD"
+    
+Dodatkowo zmieniamy rozszerzenie pliku ReadMe.txt na ReadMe.md (aby ułatwić rozpoznawanie formatu markdown)
+
+Naszym zadaniem jest złożenie trasy `route`.
+Wprowadzone modyfikacje instalujemy w lokalnym repozytorium paczek Maven (/home/esb/.m2/repository/).
+
+    $ cd ~/Workspace/esb-workshop/report-service/
+    $ mvn install
