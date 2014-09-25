@@ -11,7 +11,7 @@ Aby nie startować od zera rozglądamy się po dostępnych [szablonach startowyc
 Promowany dziś szablon to camel-archetype-cxf-code-first-blueprint. Otwieramy terminal i generujemy startowy projekt.
 
 ~~~
-$ cd ~/Workspace/esb-workshop/services
+$ cd ~/Workspace/esb-workshop/
 $ mvn archetype:generate -DarchetypeArtifactId=camel-archetype-cxf-contract-first-blueprint -DarchetypeVersionId=2.13.2 -DarchetypeGroupId=org.apache.camel.archetypes
 ..
 Define value for property 'groupId': : esb
@@ -27,5 +27,5 @@ Define value for property 'package':  esb: :
 Projekt zbudowany. Owieramy go w IntelliJ Idea.
 
 ~~~
-IntelliJ Idea -> File -> Import Project -> ~/Workspace/esb-workshop/services/report-service/pom.xml -> 4xNext -> This Window
+IntelliJ Idea -> File -> Import Project -> ~/Workspace/esb-workshop/report-service/pom.xml -> 4xNext -> This Window
 ~~~
