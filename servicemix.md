@@ -327,4 +327,42 @@ Zadanie do wykonania to dodanie drugiej trasy pobierającej komunikaty z kolejki
 
 Przebudowujemy usługę i sprawdzamy powtórnie kolejkę ActiveMQ. 
     
-    
+## Krok 10 - obsługa błędów ##
+
+Dodadamy ponawianie przy wystąpieniu błędów. 
+
+Wymagania obsługi błędów definiowane są często w następujący sposób. 
+
+* Jeśli jest szasna, że błąd jest tymczasowy to usługa powinna ponawiać wysyłanie komuniaktu. 
+* Jeśli zostanie osiągnięta maksymalna ilość ponowień to komunikat powinien trafić na "bocznicę".
+* Jeśli wiadomo, że błąd samoczynnie nie ustąpi to komunikat powinien od razu trafić na "bocznicę".
+
+Wymagania te ma szanse spełnić jeden z dostępnych w Camel wzorców - [Dead Letter Channel](http://camel.apache.org/dead-letter-channel.html).
+
+    <bean id="myDeadLetterErrorHandler" class="org.apache.camel.builder.DeadLetterChannelBuilder">
+        <property name="deadLetterUri" value="activemq://ActiveMQ.DLQ" />
+        <property name="redeliveryPolicy">
+            <bean class="org.apache.camel.processor.RedeliveryPolicy">
+                <property name="maximumRedeliveries" value="5" />
+                <property name="redeliveryDelay" value="5000"/>
+                <property name="useExponentialBackOff" value="false" />
+            </bean>
+        </property>
+    </bean>
+
+Podłączenie handlera do CamelContext (czyli dla wszystkich tras w CamelContext).
+
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint" errorHandlerRef="myDeadLetterErrorHandler">
+
+Aby zastosować obsługę tylko dla wybranych rodzajów błędów należy użyć klauzule onException (może być ich kilka w CamelContex ale muszą być zdefiniowane jako pierwsze).
+
+    <onException >
+        <exception>java.lang.Exception</exception>
+        <redeliveryPolicy maximumRedeliveries="10"
+                          useExponentialBackOff="true"/>
+        <to uri="activemq://ActiveMQ.DLQ"/>
+    </onException>
+
+Spróbujmy podłączyć handler globalny i przetestować działanie za pomocą SoapUI (np.wyłączając mocka usługi docelowej).
+
+Zagadka: jakie mogą być problemy z powyższym rozwiązaniem?      
