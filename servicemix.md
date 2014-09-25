@@ -96,7 +96,7 @@ W wygnerowanej usłudze używany był domyślny tryb POJO, trzeba go zmienić na
 
     http://localhost:8088//mock-report-service
     
-Reprezentowanym na trasie jako endpoint:
+reprezentowanym na trasie jako endpoint:
 
     <cxf:cxfEndpoint id="reportEndpoint"
                      address="http://localhost:8088/mock-report-service/"
@@ -142,7 +142,7 @@ Polecenia wystarczające do przejścia warsztatu to (także w 90% standardowego 
 * `uninstall BUNDLE_ID` odinstalowuje paczki
 * `start BUNDLE_ID` startuje paczki (działa też `install -s`)
 * `stop BUNDLE_ID` zatrzymuje paczki 
-* `dev:watch *` automatycznie odświerza paczki rozwojowe (w lokalnym dialekcie *SNAPSHOTS*)
+* `dev:watch *` automatycznie odświeża paczki rozwojowe (w lokalnym dialekcie *SNAPSHOTS*)
 
 Proponuje poeksperymentować trochę z poleceniami `list` i `log:tail` w połączeniu z `grep`.
 
@@ -177,16 +177,16 @@ ServiceMix udostępnia (z wykorzystaniem biblioteki cxf) listę dostępnych usł
     
     http://localhost:8181/cxf
 
-Możemy wyświetlić wsdl usługi dodając parametr ?wsdl do adresu:
+Możemy wyświetlić WSDL usługi dodając parametr ?wsdl do adresu:
     
     http://localhost:8888/report-service/?wsdl
 
 
-Ustawiamy ServiceMix aby przyszłe zmiany usługi były odświerzane automatycznie po zainstalowaniu w lokalnym repozytorium (zmiany wszystkich paczek SNAPSHOTS).
+Ustawiamy ServiceMix aby przyszłe zmiany usługi były odświeżane automatycznie po zainstalowaniu w lokalnym repozytorium (zmiany wszystkich paczek SNAPSHOTS).
 
     karaf@root> dev:watch *
 
-Aby przetestować odświerzanie modyfikujemy nazwę usługi w pliku pom.xml
+Aby przetestować odświeżanie modyfikujemy nazwę usługi w pliku pom.xml
 
     <name>Report Service</name>
     
@@ -208,11 +208,11 @@ Generujemy mock usługi docelewej.
     SoapUI -> ReportIncidentBinding -> Generate SOAP Mock Service -> Path: /mock-report-service, Port: 8088 -> 2xOK
 
 
-Mock zostaje wygenerowany, starujemy go przez kliknięcie zielonej strzałki (okno mocka otwiera się automatycznie lub po klinięciu nazwy mocka).
+Mock zostaje wygenerowany, starujemy go przez kliknięcie zielonej strzałki (okno mocka otwiera się automatycznie lub po klinięciu nazwy mocka).
 Wszystko gotowe, możemy wysłać żądanie na adres usługi na ServiceMix. 
 
 
-Wysyłamy żądanie na adres usługi : hhttp://localhost:8888/report-service/
+Wysyłamy żądanie na adres usługi : http://localhost:8888/report-service/
 
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rep="http://reportincident.example.camel.apache.org">
        <soapenv:Header/>
@@ -230,7 +230,7 @@ Wysyłamy żądanie na adres usługi : hhttp://localhost:8888/report-service/
        </soapenv:Body>
     </soapenv:Envelope>
 
-W dolnej częsci okna mocka wyświetlana jest list z logiem `Message Log`. Powinien pojawić się nowy wpis, który możemy podejrzeć przez kliknięcie.
+W dolnej części okna mocka wyświetlana jest lista z logiem `Message Log`. Powinien pojawić się nowy wpis, który możemy podejrzeć przez kliknięcie.
     
 ## Krok 7 - Logowanie ##
 
@@ -246,7 +246,7 @@ Log trafia także do pliku:
 
     tail ~/Programs/apache-servicemix-5.1.2/data/log/servicemix.log
     
-Domyślnie nic nie zostało zalogowane. Musimy samodzielnie dodać logowanie.
+Domyślnie nic nie zostało zalogowane. Musimy samodzielnie dodać logowanie.
 Logowanie możemy wykonać przy użyciu endpointu log (loggingCategory to dowolny tekst opisujący wpis logu):
 
     <to uri="log:loggingCategory"/>
