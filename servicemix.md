@@ -255,7 +255,7 @@ Sprawdźmy działanie takiego logowania.
 
 Zagadka - jakich przypadków ten sposób nie zaloguje?
 
-## Krok 8 - Ulepszenie logowania ## 
+## Krok 8 - Ulepszenie logowania ##
 
 Wykorzystamy logowanie udostępnione przez komponent camle-cxf. 
 Poza camelContext definiujemy logowanie jako:
@@ -289,7 +289,7 @@ Niestety musimy zmienić wersje na camel **2.13.2** i cxf **2.7.11** (Ctrl+R w I
 
 Przebudowujemy usługę i testujemy w SoapUI nowe logowanie.
 
-## Krok 9 ##
+## Krok 9 - wstawienie komunikatu na kolejkę ##
 
 Wstawienie komunikatu na kolejkę.
 
