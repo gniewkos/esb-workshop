@@ -354,7 +354,7 @@ Podłączenie handlera do CamelContext (czyli dla wszystkich tras w CamelContext
 
     <camelContext xmlns="http://camel.apache.org/schema/blueprint" errorHandlerRef="myDeadLetterErrorHandler">
 
-Aby zastosować obsługę tylko dla wybranych rodzajów błędów należy użyć klauzule onException (może być ich kilka w CamelContex ale muszą być zdefiniowane jako pierwsze).
+Aby zastosować obsługę tylko dla wybranych rodzajów błędów należy użyć klauzuli onException (może być ich kilka w CamelContex ale muszą być zdefiniowane jako pierwsze).
 
     <onException >
         <exception>java.lang.Exception</exception>
