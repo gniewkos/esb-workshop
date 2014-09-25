@@ -33,7 +33,7 @@ Projekt wygenerowany. Owieramy go w IntelliJ Idea.
 
 (Super) Szybkie wprowadzenie do Apache Camel (15 min).
 
-Camel przedstawia się najstępująco:
+Camel przedstawia się następująco:
 
 *Camel (http://camel.apache.org) is an open-source, Java-based project that helps the user implement many of the design patterns in the EIP book.* 
 
