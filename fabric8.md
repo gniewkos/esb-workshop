@@ -28,11 +28,11 @@ Kilka wskazówek pomagających zrozumieć działanie konsoli:
 
 * Kontener instance01 powinien być widoczny na liście w zakładce Runtime. 
 * W zakładce APIs możemy odszukać adres usługi quickstarts-karaf-cxf. 
-* Klikając nazwę kontenera przodzimy do jego szczegółów.
+* Klikając nazwę kontenera przochodzimy do jego szczegółów.
 * Klikając strzałkę przy nazwie otwieramy nowe okno z widokiem perspektywy kontenera instance01.
 * Perpektywę kontenera możemy zmienić także przełącznikiem po lewej stronie menu głównego.  
 
-Aby sprawdzić działanie usługi możemy wygenerować rządanie w SoapUI i wysłać rządanie.
+Aby sprawdzić działanie usługi możemy wygenerować żądanie w SoapUI i wysłać żądanie.
 
     SoapUI -> File -> New SOAP Project -> Project Name: Fabric8, Initial WSDL: http://localhost:8183/cxf/order/?wsdl -> OK
 
@@ -45,13 +45,13 @@ Usuwamy kontener z przykładem.
 
 ## Krok 3 - Dubugowanie ##
 
-Ciekawą funkcjonalnością jest debugowanie trasy integracyjnej. Przetestujemy to na ciekawszym przykładzie angażującym brokera ActiveMQ i wzorzec Content Base Router (CBR).
+Ciekawą funkcjonalnością jest debugowanie trasy integracyjnej. Przetestujemy to na ciekawszym przykładzie angażującym brokera ActiveMQ i wzorzec Content Base Router (CBR).
 
 Uruchamiamy nową instancję brokera ActiveMQ.
 
     Fabric8 -> Runtime -> MQ -> Create broker configuration -> Group: mygroup, Broker name:mybroker, Kind: StandAlone - > Create
 
-Należy chwilę poczekać na odświerzenie strony z utworzoną grupa i profilem mybroker. Klikamy w ikonę wykrzyknika i dodajemy nowy kontener z tym profilem.
+Należy chwilę poczekać na odświeżenie strony z utworzoną grupa i profilem mybroker. Klikamy w ikonę wykrzyknika i dodajemy nowy kontener z tym profilem.
 Utworzona konfiguracja to dwa profile:
 
 * Mq/Broker/mygroup.mybroker - służy do uruchomienia Brokera
