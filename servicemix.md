@@ -114,3 +114,40 @@ Wprowadzone modyfikacje instalujemy w lokalnym repozytorium paczek Maven (/home/
 
     $ cd ~/Workspace/esb-workshop/report-service/
     $ mvn install
+
+## Krok 4 - Uruchamiamy ServiceMix ##
+
+    $ cd ~/Programs/apache-servicemix-5.1.2/
+    $ ./bin/servicemix
+
+... i rozglądamy się po terenie
+
+Sprawdza się metoda pracy z konsolą linux, działa TAB:)
+
+    karaf@root> h `tab`
+    head       headers    help       history
+    karaf@root> help
+
+`help` wyświetla listę wszystkich dostępnych poleceń.
+Większość z nich udostępnia pomoc `--help`.
+
+Polecenia wystarcząjące do przejścia warsztatu to (także w 90% standardowego użytkowania):
+
+* podpowiedzi `tab`
+* wyszukiwanie w historii poleceń `ctrl+r`
+* niektóre przydatne linuxowe narzędzia gdzie numer jeden to `grep`
+* `list` wyświetla listę paczek (w lokalnym dialekcie *bundli*), najcześciej używana komenda to: `list | grep '..'`
+* `log:tail` wyświetla logi ServiceMix
+* `install` instaluje nowe paczki
+* `uninstall BUNDLE_ID` odinstalowuje paczki
+* `start BUNDLE_ID` startuje paczki (działa też `install -s`)
+* `stop BUNDLE_ID` zatrzymuje paczki 
+* `dev:watch *` automatycznie odświerza paczki rozwojowe (w lokalnym dialekcie *SNAPSHOTS*)
+
+Proponuje poeksperymentować trochę z poleceniami `list` i `log:tail` w połączeniu z `grep`.
+
+    karaf@root> list
+    ..
+    karaf@root> log:tail
+    ...
+    ctrl+c
