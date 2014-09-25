@@ -195,5 +195,40 @@ Przebudowujemy usługę i sprawdzamy konsolę ServiceMix (polecenie `list` wyśw
     $ cd ~/Workspace/esb-workshop/report-service/
     $ mvn install
     
+## Krok 6 - Testy SaopUI ##
+
+Testujemy usługę prostego proxy z SoapUI.
+
+Uruchamiamy SoapUI i na podstawie WSDL generujemy żądanie.
+
+    SoapUI -> File -> New SOAP Project -> Project Name: report-service, Initial WSDL: http://localhost:8888/report-service/?wsdl -> OK
     
+Generujemy mock usługi docelewej.
+
+    SoapUI -> ReportIncidentBinding -> Generate SOAP Mock Service -> Path: /mock-report-service, Port: 8088 -> 2xOK
+
+
+Mock zostaje wygenerowany, starujemy go przez kliknięcie zielonej strzałki (okno mocka otwiera się automatycznie lub po klinięciu nazwy mocka).
+Wszystko gotowe, możemy wysłać rządanie na adres usługi na ServiceMix. 
+
+
+Wysyłamy żądanie na adres usługi : hhttp://localhost:8888/report-service/
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rep="http://reportincident.example.camel.apache.org">
+       <soapenv:Header/>
+       <soapenv:Body>
+          <rep:inputReportIncident>
+             <incidentId>1</incidentId>
+             <incidentDate>2014-09-19</incidentDate>
+             <givenName>Man Who</givenName>
+             <familyName>Loves Simplicity</familyName>
+             <summary>I am despair</summary>
+             <details>Nothing is as easy as it could...</details>
+             <email>man_who_loves_simplicity@pl.sii.eu</email>
+             <phone>777 777 777</phone>
+          </rep:inputReportIncident>
+       </soapenv:Body>
+    </soapenv:Envelope>
+
+W dolnej częsci okna mocka wyświetlana jest list z logiem `Message Log`. Powinien pojawić się nowy wpis, który możemy podejrzeć przez kliknięcie.
     
