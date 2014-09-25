@@ -289,6 +289,42 @@ Niestety musimy zmienić wersje na camel **2.13.2** i cxf **2.7.11** (Ctrl+R w I
 
 Przebudowujemy usługę i testujemy w SoapUI nowe logowanie.
 
+## Krok 9 ##
 
+Wstawienie komunikatu na kolejkę.
+
+Instalujemy na ServiceMix system obsługi kolejek ActiveMQ (w lokalnym dialekcie Broker komunikatów).
+Będzie potrzebny także komponent Freemarker.
+
+    karaf@root> features:install activemq-broker
+    karaf@root> features:install camel-freemarker
+
+Komunikat możemy wysłać na kolejkę następująco (inOnly - wysyłamy ale nie potrzebujemy odpowiedzi od Brokera).
+
+    <inOnly uri="activemq://inputReportIncident"/>
+
+Komunikat będzie dostarczony przez szynę offline więc musimy wygenerować komunikat odpowiedzi i przesłać go klientowi.
+Do tego rodzaju operacji bardzo czesto wykorzystywany jest Freemarker uzupełniający podany szablon danymi. W naszym przypadku szablonem jest plik ok.xml.
+
+    <to uri="freemarker:ok.xml"/>
+
+Całość trasy wstawiającej komunikat na kolejkę i wysyłającej odpowiedź klientowi wygląda następująco.
+
+    <route>
+      <from uri="cxf:bean:reportEsbEndpoint?dataFormat=PAYLOAD"/>
+      <inOnly uri="activemq://inputReportIncident"/>
+      <to uri="freemarker:ok.xml"/>
+    </route>
+
+Możemy przebudować usługę z taką trasą i sprawdzić działanie w SoapUI.
+Klient wysyłający rządanie dostaje odpowiedź ale w mocku usługi docelowej nie mamy nowego wpisu.
+
+Nasz komunikat cały czas czeka na kolejce ActiveMQ:
+
+    http://localhost:8181/activemqweb/
+   
+Zadanie do wykonania to dodanie drugiej trasy pobierającej komunikaty z kolejki (from) i przesyłającej klientowi (to).
+
+Przebudowujemy usługę i sprawdzamy powtórnie kolejkę ActiveMQ. 
     
     

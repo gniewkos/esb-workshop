@@ -27,9 +27,14 @@
     <camelContext xmlns="http://camel.apache.org/schema/blueprint">
         <route>
             <from uri="cxf:bean:reportEsbEndpoint?dataFormat=PAYLOAD"/>
-            <to uri="cxf:bean:reportEndpoint?dataFormat=PAYLOAD"/>
+            <inOnly uri="activemq://inputReportIncident"/>
+            <to uri="freemarker:ok.xml"/>
         </route>
 
+        <route>
+            <from uri="activemq://inputReportIncident"/>
+            <to uri="cxf:bean:reportEndpoint?dataFormat=PAYLOAD"/>
+        </route>
     </camelContext>
 
     <bean id="loggingFeature" class="org.apache.cxf.feature.LoggingFeature">
