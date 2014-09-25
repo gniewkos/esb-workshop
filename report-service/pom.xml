@@ -8,7 +8,7 @@
   <packaging>bundle</packaging>
   <version>1.0-SNAPSHOT</version>
 
-  <name>A Camel CXF Blueprint Route</name>
+  <name>Report Service</name>
   <url>http://www.myorganization.org</url>
 
   <properties>

@@ -151,3 +151,49 @@ Proponuje poeksperymentować trochę z poleceniami `list` i `log:tail` w połąc
     karaf@root> log:tail
     ...
     ctrl+c
+    
+#### Krok 5 - Uruchomienie usługi na ServiceMix ####
+
+Uruchomiamy usługę prostego proxy na ServiceMix.
+
+ServiceMix jest domyślnie skonfigurowany w taki sposób aby szukać paczek właśnie w `~/.m2/repository/`. Dzięki temu instalacja paczki z usługą na ServiceMix polega na wykonaniu polecenia.
+
+    karaf@root> install -s mvn:esb/report-service/1.0-SNAPSHOT
+    Bundle ID: 200
+
+Sprawdzamy status usługi. `Active` = OK. 
+
+    karaf@root> list
+    ...
+    20   Active  Created   80    A Camel CXF Blueprint Route (1.0.0.SNAPSHOT)
+
+Sprawdzamy logi z uruchomienia usług.
+
+    karaf@root> log:tail
+    ...
+    ctrl+c
+
+ServiceMix udostępnia (z wykorzystaniem biblioteki cxf) listę dostępnych usług po adresem:
+    
+    http://localhost:8181/cxf
+
+Możemy wyświetlić wsdl usługi dodając parametr ?wsdl do adresu:
+    
+    http://localhost:8888/report-service/?wsdl
+
+
+Ustawiamy ServiceMix aby przyszłe zmiany usługi były odświerzane automatycznie po zainstalowaniu w lokalnym repozytorium (zmiany wszystkich paczek SNAPSHOTS).
+
+    karaf@root> dev:watch *
+
+Aby sprawdzić odświerzanie modyfikujemy nazwę usługi w pliku pom.xml
+
+    <name>Report Service</name>
+    
+Przebudowujemy usługę i sprawdzamy konsolę ServiceMix (polecenie `list` wyświetli nową nazwę usługi).
+
+    $ cd ~/Workspace/esb-workshop/report-service/
+    $ mvn install
+    
+    
+    
