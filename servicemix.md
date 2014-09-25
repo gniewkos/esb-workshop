@@ -29,7 +29,7 @@ Projekt wygenerowany. Owieramy go w IntelliJ Idea.
     IntelliJ Idea -> Import Project -> ~/Workspace/esb-workshop/report-service/pom.xml -> 4xNext -> This Window
 
 
-## Krok 2 ##
+## Krok 2 - wprowadzenie do Apache Camel ##
 
 (Super) Szybkie wprowadzenie do Apache Camel (15 min).
 
