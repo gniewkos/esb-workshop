@@ -8,7 +8,7 @@ Rozpoczynamy budowę usługi.
 Celem jest zbudowanie usługi proxy z kolejką. 
 Aby nie startować od zera rozglądamy się po dostępnych [szablonach startowych Camel](http://camel.apache.org/camel-maven-archetypes.html) (w lokalnym dialekcie archetypes).
 
-Promowany dziś szablon to camel-archetype-cxf-code-first-blueprint. Otwieramy terminal i generujemy startowy projekt.
+Promowany dziś szablon to camel-archetype-cxf-code-first-blueprint. Otwieramy terminal i generujemy startowy projekt.
 
 
     $ cd ~/Workspace/esb-workshop/
@@ -49,9 +49,9 @@ Można wspomagać się [Camel Getting Started](http://camel.apache.org/book-gett
 
 Podstawowe pojęcia:
 
-* `Endpoint` może mieć kilka znaczeń zależnie od kontekstu, w analogi Lego jest to złączka. Komponenty udostępniają enpointy w postaci URI np. camel-cxf udostępnia URI: `cxf:<bean:cxfEndpoint|//someAddress>[?options]`.
+* `Endpoint` może mieć kilka znaczeń zależnie od kontekstu, w analogi Lego jest to złączka. Komponenty udostępniają endpointy w postaci URI np. camel-cxf udostępnia URI: `cxf:<bean:cxfEndpoint|//someAddress>[?options]`.
 * `CamelContext` uruchamia wszystkie komponenty wchodzące w skład aplikacji (w naszym przypadku usługi). Może być to aplikacja wielowątkowa - niektóre komponenty uruchamiają własne wątki.
-* `Message` komuniakt, np. komunikat rządania klienta, odpowiedzi serwera lub błąd. Message składa się z *id*, *body* oraz *headers*.
+* `Message` komuniakt, np. komunikat żądania klienta, odpowiedzi serwera lub błąd. Message składa się z *id*, *body* oraz *headers*.
 * `Exchange` opakowanie dla pojedynczej wymiany komunikatów (żądanie + odpowiedź lub błąd). Exchange może być typu InOut (żądanie odpowiedź) lub InOnly (zdarzenia).
 * `Route` trasa jest przejściem `Message` krok po kroku od jednego `Endpointu` do innego.
 
@@ -80,7 +80,7 @@ Reprezentowanym na trasie jako następujący endpoint:
     </cxf:cxfEndpoint>
 
 
-Ponieważ, nie bedziemy potrzebować zamiany rządania na obiekty Javy nie używamy już atrybuut serviceClass. Endpoint cxf obsługuje formaty: 
+Ponieważ, nie bedziemy potrzebować zamiany żądania na obiekty Javy nie używamy już atrybuut serviceClass. Endpoint cxf obsługuje formaty: 
     
 * POJO (domoślny)
 * PAYLOAD(treścią komunikatu jest soap.body)
@@ -92,7 +92,7 @@ W wygnerowanej usłudze używany był domyślny tryb POJO, trzeba go zmienić na
     uri="cxf:bean:reportEsbEndpoint?dataFormat=PAYLOAD"
 
 
-Rządanie klienta poiwnno zostać przekazane do usługi docelowej na adresie:
+Żądanie klienta poiwnno zostać przekazane do usługi docelowej na adresie:
 
     http://localhost:8088//mock-report-service
     
@@ -209,7 +209,7 @@ Generujemy mock usługi docelewej.
 
 
 Mock zostaje wygenerowany, starujemy go przez kliknięcie zielonej strzałki (okno mocka otwiera się automatycznie lub po klinięciu nazwy mocka).
-Wszystko gotowe, możemy wysłać rządanie na adres usługi na ServiceMix. 
+Wszystko gotowe, możemy wysłać żądanie na adres usługi na ServiceMix. 
 
 
 Wysyłamy żądanie na adres usługi : hhttp://localhost:8888/report-service/
@@ -317,7 +317,7 @@ Całość trasy wstawiającej komunikat na kolejkę i wysyłającej odpowiedź k
     </route>
 
 Możemy przebudować usługę z taką trasą i sprawdzić działanie w SoapUI.
-Klient wysyłający rządanie dostaje odpowiedź ale w mocku usługi docelowej nie mamy nowego wpisu.
+Klient wysyłający żądanie dostaje odpowiedź ale w mocku usługi docelowej nie mamy nowego wpisu.
 
 Nasz komunikat cały czas czeka na kolejce ActiveMQ:
 
