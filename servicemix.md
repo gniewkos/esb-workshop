@@ -152,9 +152,9 @@ Proponuje poeksperymentować trochę z poleceniami `list` i `log:tail` w połąc
     ...
     ctrl+c
     
-#### Krok 5 - Uruchomienie usługi na ServiceMix ####
+## Krok 5 - Uruchamiamy usługę ##
 
-Uruchomiamy usługę prostego proxy na ServiceMix.
+Uruchamiamy usługę prostego proxy na ServiceMix.
 
 ServiceMix jest domyślnie skonfigurowany w taki sposób aby szukać paczek właśnie w `~/.m2/repository/`. Dzięki temu instalacja paczki z usługą na ServiceMix polega na wykonaniu polecenia.
 
