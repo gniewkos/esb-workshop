@@ -156,7 +156,7 @@ Proponuje poeksperymentować trochę z poleceniami `list` i `log:tail` w połąc
 
 Uruchamiamy usługę prostego proxy na ServiceMix.
 
-ServiceMix jest domyślnie skonfigurowany w taki sposób aby szukać paczek właśnie w `~/.m2/repository/`. Dzięki temu instalacja paczki z usługą na ServiceMix polega na wykonaniu polecenia.
+ServiceMix jest domyślnie skonfigurowany w taki sposób, aby szukać paczek właśnie w `~/.m2/repository/`. Dzięki temu instalacja paczki na ServiceMix polega na wykonaniu polecenia.
 
     karaf@root> install -s mvn:esb/report-service/1.0-SNAPSHOT
     Bundle ID: 200
@@ -167,7 +167,7 @@ Sprawdzamy status usługi. `Active` = OK.
     ...
     20   Active  Created   80    A Camel CXF Blueprint Route (1.0.0.SNAPSHOT)
 
-Sprawdzamy logi z uruchomienia usług.
+Sprawdzamy logi z uruchomienia usługi.
 
     karaf@root> log:tail
     ...
@@ -186,7 +186,7 @@ Ustawiamy ServiceMix aby przyszłe zmiany usługi były odświerzane automatyczn
 
     karaf@root> dev:watch *
 
-Aby sprawdzić odświerzanie modyfikujemy nazwę usługi w pliku pom.xml
+Aby przetestować odświerzanie modyfikujemy nazwę usługi w pliku pom.xml
 
     <name>Report Service</name>
     
