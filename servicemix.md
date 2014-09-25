@@ -232,3 +232,25 @@ Wysyłamy żądanie na adres usługi : hhttp://localhost:8888/report-service/
 
 W dolnej częsci okna mocka wyświetlana jest list z logiem `Message Log`. Powinien pojawić się nowy wpis, który możemy podejrzeć przez kliknięcie.
     
+## Krok 7 - Logowanie ##
+
+Logowanie komunikacji.
+
+Sprawdzamy logi z przepływu komunikatu na ServiceMix.
+
+    karaf@root> log:tail
+    ...
+    ctrl+c
+
+Log trafia także do pliku:
+
+    tail ~/Programs/apache-servicemix-5.1.2/data/log/servicemix.log
+    
+Domyślnie nic nie zostało zalogowane. Musimy samodzielnie dodać logowanie.
+Logowanie możemy wykonać przy użyciu endpointu log (loggingCategory to dowolny tekst opisujący wpis logu):
+
+    <to uri="log:loggingCategory"/>
+
+Sprawdźmy działanie takiego logowania.
+
+Zagadka - jakich przypadków ten sposób nie zaloguje?

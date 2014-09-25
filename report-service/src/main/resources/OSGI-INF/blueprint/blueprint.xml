@@ -21,7 +21,9 @@
     <camelContext xmlns="http://camel.apache.org/schema/blueprint">
         <route>
             <from uri="cxf:bean:reportEsbEndpoint?dataFormat=PAYLOAD"/>
+            <to uri="log:report-input"/>
             <to uri="cxf:bean:reportEndpoint?dataFormat=PAYLOAD"/>
+            <to uri="log:report-output"/>
         </route>
 
     </camelContext>
