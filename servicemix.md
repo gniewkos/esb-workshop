@@ -254,3 +254,41 @@ Logowanie możemy wykonać przy użyciu endpointu log (loggingCategory to dowoln
 Sprawdźmy działanie takiego logowania.
 
 Zagadka - jakich przypadków ten sposób nie zaloguje?
+
+## Krok 8 - Ulepszenie logowania ## 
+
+Wykorzystamy logowanie udostępnione przez komponent camle-cxf. 
+Poza camelContext definiujemy logowanie jako:
+
+     <bean id="loggingFeature" class="org.apache.cxf.feature.LoggingFeature">
+            <property name="prettyLogging" value="true"/>
+     </bean>
+
+Aby właczyć tak zdefiniowane logowanie w endpoint:
+
+    <cxf:cxfEndpoint id="reportEsbEndpoint"
+                     address="http://localhost:8888/report-proxy/"
+                     wsdlURL="wsdl/report_incident.wsdl">
+        <cxf:features>
+            <ref component-id="loggingFeature"/>
+        </cxf:features>
+    </cxf:cxfEndpoint>    
+
+Poprzednie logowanie możemy już usunąć.
+
+Przebudowujemy uslugę i ....
+
+    Error updating bundle.
+    org.osgi.framework.BundleException: Unresolved constraint in bundle report-service [200]: 
+    Unable to resolve 204.3: missing requirement [200.3] osgi.wiring.package; (&(osgi.wiring.package=org.apache.cxf.feature)(version>=3.0.0)(!(version>=4.0.0)))
+    
+Nie udało się rozwiązać zależności do paczki cxf z wersją 3.0.0 lub większą. 
+Sprawdzając pom.xml widzimy, że pomino wskazania wersji szablonu 2.13.2 (-DarchetypeVersionId=2.13.2) wygenerowane wersje zależności to camel 2.14.0 i cxf 3.0.1.
+
+Niestety musimy zmienić wersje na camel **2.13.2** i cxf **2.7.11** (Ctrl+R w IntelliJ).
+
+Przebudowujemy usługę i testujemy w SoapUI nowe logowanie.
+
+
+    
+    

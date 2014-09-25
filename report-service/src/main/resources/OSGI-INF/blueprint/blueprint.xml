@@ -11,21 +11,29 @@
     <cxf:cxfEndpoint id="reportEsbEndpoint"
                      address="http://localhost:8888/report-service/"
                      wsdlURL="wsdl/report_incident.wsdl">
+        <cxf:features>
+            <ref component-id="loggingFeature"/>
+        </cxf:features>
     </cxf:cxfEndpoint>
 
     <cxf:cxfEndpoint id="reportEndpoint"
                      address="http://localhost:8088/mock-report-service/"
                      wsdlURL="wsdl/report_incident.wsdl">
+        <cxf:features>
+            <ref component-id="loggingFeature"/>
+        </cxf:features>
     </cxf:cxfEndpoint>
 
     <camelContext xmlns="http://camel.apache.org/schema/blueprint">
         <route>
             <from uri="cxf:bean:reportEsbEndpoint?dataFormat=PAYLOAD"/>
-            <to uri="log:report-input"/>
             <to uri="cxf:bean:reportEndpoint?dataFormat=PAYLOAD"/>
-            <to uri="log:report-output"/>
         </route>
 
     </camelContext>
+
+    <bean id="loggingFeature" class="org.apache.cxf.feature.LoggingFeature">
+        <property name="prettyLogging" value="true"/>
+    </bean>
 
 </blueprint>
