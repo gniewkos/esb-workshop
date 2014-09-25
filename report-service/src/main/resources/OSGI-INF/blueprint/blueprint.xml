@@ -24,15 +24,9 @@
         </cxf:features>
     </cxf:cxfEndpoint>
 
-    <camelContext xmlns="http://camel.apache.org/schema/blueprint" errorHandlerRef="myDeadLetterErrorHandler">
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
         <route>
             <from uri="cxf:bean:reportEsbEndpoint?dataFormat=PAYLOAD"/>
-            <inOnly uri="activemq://inputReportIncident"/>
-            <to uri="freemarker:ok.xml"/>
-        </route>
-
-        <route>
-            <from uri="activemq://inputReportIncident"/>
             <to uri="cxf:bean:reportEndpoint?dataFormat=PAYLOAD"/>
         </route>
     </camelContext>
@@ -41,15 +35,5 @@
         <property name="prettyLogging" value="true"/>
     </bean>
 
-    <bean id="myDeadLetterErrorHandler" class="org.apache.camel.builder.DeadLetterChannelBuilder">
-        <property name="deadLetterUri" value="activemq://ActiveMQ.DLQ" />
-        <property name="redeliveryPolicy">
-            <bean class="org.apache.camel.processor.RedeliveryPolicy">
-                <property name="maximumRedeliveries" value="5" />
-                <property name="redeliveryDelay" value="5000"/>
-                <property name="useExponentialBackOff" value="false"/>
-            </bean>
-        </property>
-    </bean>
 
 </blueprint>
