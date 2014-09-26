@@ -28,6 +28,8 @@ Działanie obrazu jest sprawdzone pod VirtualBox 4.3.16
 
 ## Praca z repo ##
 
+**W dostarczonym obrazie poniższe kroki są już wykonane. Przechodzimy od razu do instrukcji servicemix.md.**
+
 Klonujemy repo 
     
     $ cd ~/Workspace
@@ -50,13 +52,14 @@ Każdy krok jest 'otagowany'.
     step8
     step9
 
-Rozpoczynamy od kroku 1
+Rozpoczynamy od usunięcia usługi report-service, którą wygenerujemy samodzielnie.
 
-    git checkout tags/step1
+    $ rm -fR report-service
 
 Aby przeskoczyć do jakiegoś kroku wycofując własne eksperymenty wykonujemy:
 
     $ git checkout .
+    $ rm -fR report-service
     $ git checkout tags/step
 
 
